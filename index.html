@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#dce3e8">
+<title>Speedy's Auto Body | Erick</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#17212a;min-height:100vh;background:linear-gradient(135deg,#eef2f4,#b8c1c8 48%,#e9eef1);}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.34;background:repeating-linear-gradient(125deg,transparent 0 52px,rgba(255,255,255,.55) 53px,transparent 55px),radial-gradient(circle at 12% 18%,rgba(15,110,180,.24),transparent 23%),radial-gradient(circle at 88% 74%,rgba(232,52,65,.17),transparent 25%)}
+.card{width:min(100%,470px);min-height:100vh;margin:auto;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(244,247,249,.96),rgba(205,214,220,.96));box-shadow:0 0 55px rgba(22,31,38,.35)}
+.card:before{content:"SPEEDY'S\A AUTO BODY";white-space:pre;position:absolute;top:250px;left:-28px;font-size:56px;line-height:.84;font-weight:1000;font-style:italic;letter-spacing:-4px;color:rgba(28,39,47,.055);transform:rotate(-8deg);pointer-events:none}
+.card:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(30deg,#26343d 12%,transparent 12.5%,transparent 87%,#26343d 87.5%,#26343d),linear-gradient(150deg,#26343d 12%,transparent 12.5%,transparent 87%,#26343d 87.5%,#26343d);background-size:32px 56px}
+.card>*{position:relative;z-index:1}.topbar{display:flex;justify-content:flex-end;padding:18px 18px 0}.lang{display:flex;border:1px solid #74818a;border-radius:24px;overflow:hidden;background:rgba(255,255,255,.76);box-shadow:0 5px 18px rgba(0,0,0,.12)}.lang button{border:0;color:#53606a;background:transparent;padding:9px 15px;font-weight:800;font-size:14px}.lang button.active{color:#fff;background:linear-gradient(180deg,#1489df,#075792);box-shadow:0 0 14px rgba(22,140,220,.45)}
+.hero{padding:4px 16px 8px;text-align:center}.logo{width:94%;max-height:300px;object-fit:contain;filter:drop-shadow(0 8px 13px rgba(0,0,0,.28))}
+.owner{margin:0 16px 16px;padding:12px;border:1px solid #87939b;border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(217,224,229,.94));box-shadow:inset 0 1px #fff,0 8px 18px rgba(0,0,0,.13)}.owner h1{margin:0;font-size:34px;letter-spacing:.5px;text-transform:uppercase;color:#16232c}.owner p{margin:3px 0 0;font-size:17px;letter-spacing:3px;color:#56636c;text-transform:uppercase}
+.actions{padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.btn{min-height:82px;border-radius:18px;border:1px solid #697680;background:linear-gradient(160deg,#2c3740,#11181d);color:#fff;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:13px;box-shadow:inset 0 1px rgba(255,255,255,.15),0 7px 15px rgba(0,0,0,.2)}.btn .ico{font-size:28px;margin-bottom:6px}.call{border-color:#19bb4c}.text{border-color:#159fe0}.directions{border-color:#e64c79}.website{border-color:#e9a51c}.save{border-color:#aeb7bd}.share{border-color:#9a52d4}
+.info{margin:16px;border:1px solid #8c989f;border-radius:18px;background:rgba(249,251,252,.86);display:grid;grid-template-columns:1fr 1fr 1fr;overflow:hidden;box-shadow:0 7px 17px rgba(0,0,0,.12)}.info div{padding:14px 6px;text-align:center;border-right:1px solid #c1c9ce}.info div:last-child{border:0}.info b{display:block;font-size:12px;margin-top:7px;color:#1a252d}.info span{display:block;font-size:11px;color:#64717a;margin-top:4px}.info .sym{font-size:25px;color:#087fbe}
+.address{margin:0 16px 14px;padding:12px 14px;border-radius:15px;background:rgba(255,255,255,.82);border:1px solid #9aa5ac;text-align:center;font-size:13px}.address a{color:#17232c;text-decoration:none;font-weight:700}.socials{display:flex;justify-content:center;gap:17px;padding:4px 16px 18px}.social{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:white;text-decoration:none;font-weight:900;font-size:20px;border:2px solid #555;background:#20282e;box-shadow:0 6px 12px rgba(0,0,0,.22)}.p{border-color:#e60023}.t{border-color:#25f4ee}.f{border-color:#1877f2}.i{border-color:#e1306c}.site{margin:0 16px 22px;padding:14px;border:1px solid #2588bd;border-radius:18px;text-align:center;background:linear-gradient(90deg,rgba(255,255,255,.9),rgba(214,228,236,.9));box-shadow:0 7px 17px rgba(0,0,0,.12)}.site a{color:#075d8d;text-decoration:none;font-weight:800}.footer{text-align:center;color:#53616a;font-size:10px;font-weight:800;padding:0 0 22px;letter-spacing:.7px}
+@media(max-width:380px){.owner h1{font-size:29px}.btn{min-height:76px}.info{margin:13px}.info b{font-size:10px}.card:before{font-size:48px}}
+</style>
+</head>
+<body>
+<main class="card">
+ <div class="topbar"><div class="lang"><button id="en" class="active" onclick="setLang('en')">EN</button><button id="es" onclick="setLang('es')">ES</button></div></div>
+ <section class="hero"><img class="logo" src="Speedys.png" alt="Speedy's Auto Body Collision Repair LLC"></section>
+ <section class="owner"><h1>Erick</h1><p data-en="Owner" data-es="Propietario">Owner</p></section>
+ <section class="actions">
+   <a class="btn call" href="tel:+18166959457"><span class="ico">☎</span><span data-en="Call Now" data-es="Llamar">Call Now</span></a>
+   <a class="btn text" href="sms:+18166959457"><span class="ico">●●●</span><span data-en="Text" data-es="Mensaje">Text</span></a>
+   <a class="btn directions" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=215%20N%20Scott%20Ave%20Suite%20A%2C%20Belton%2C%20MO%2064012"><span class="ico">⌖</span><span data-en="Directions" data-es="Cómo llegar">Directions</span></a>
+   <a class="btn website" href="https://www.speedyautobody.com/" target="_blank" rel="noopener"><span class="ico">◎</span><span data-en="Website" data-es="Sitio web">Website</span></a>
+   <button class="btn save" onclick="saveContact()"><span class="ico">▣</span><span data-en="Save Contact" data-es="Guardar contacto">Save Contact</span></button>
+   <button class="btn share" onclick="shareCard()"><span class="ico">↗</span><span data-en="Share" data-es="Compartir">Share</span></button>
+ </section>
+ <section class="info">
+   <div><div class="sym">☎</div><b>816-695-9457</b><span data-en="Phone Number" data-es="Teléfono">Phone Number</span></div>
+   <div><div class="sym">▣</div><b data-en="Monday – Friday" data-es="Lunes – Viernes">Monday – Friday</b><span data-en="Work Days" data-es="Días de trabajo">Work Days</span></div>
+   <div><div class="sym">◷</div><b>9:00 AM – 5:00 PM</b><span data-en="Work Hours" data-es="Horario">Work Hours</span></div>
+ </section>
+ <div class="address"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=215%20N%20Scott%20Ave%20Suite%20A%2C%20Belton%2C%20MO%2064012">📍 215 N Scott Ave Suite A, Belton, MO 64012</a></div>
+ <section class="socials" aria-label="Social media">
+  <a class="social p" aria-label="Pinterest" target="_blank" rel="noopener" href="https://www.pinterest.com/speedyautobody/">P</a>
+  <a class="social t" aria-label="TikTok" target="_blank" rel="noopener" href="https://www.tiktok.com/@speedys.auto.body">♪</a>
+  <a class="social f" aria-label="Facebook" target="_blank" rel="noopener" href="https://www.facebook.com/SpeedysAutoBodyCollisionRepair/">f</a>
+  <a class="social i" aria-label="Instagram" target="_blank" rel="noopener" href="https://www.instagram.com/speedys_autobody/">◎</a>
+ </section>
+ <div class="site">🌐 <a href="https://www.speedyautobody.com/" target="_blank" rel="noopener">www.speedyautobody.com</a></div>
+ <div class="footer">SPEEDY'S AUTO BODY COLLISION REPAIR LLC</div>
+</main>
+<script>
+function setLang(lang){
+ document.documentElement.lang=lang;
+ document.querySelectorAll('[data-en]').forEach(el=>el.textContent=el.dataset[lang]);
+ document.getElementById('en').classList.toggle('active',lang==='en');
+ document.getElementById('es').classList.toggle('active',lang==='es');
+}
+function saveContact(){
+ const v=`BEGIN:VCARD
+VERSION:3.0
+FN:Erick
+ORG:Speedy's Auto Body Collision Repair LLC
+TITLE:Owner
+TEL;TYPE=CELL:+18166959457
+ADR;TYPE=WORK:;;215 N Scott Ave Suite A;Belton;MO;64012;USA
+URL:https://www.speedyautobody.com/
+END:VCARD`;
+ const blob=new Blob([v],{type:'text/vcard'}),a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);a.download='Erick-Speedys-Auto-Body.vcf';a.click();URL.revokeObjectURL(a.href);
+}
+async function shareCard(){
+ const data={title:"Speedy's Auto Body",text:"Speedy's Auto Body Collision Repair LLC",url:location.href};
+ if(navigator.share){try{await navigator.share(data)}catch(e){}} else {
+   try{await navigator.clipboard.writeText(location.href);alert('Link copied!')}catch(e){}
+ }
+}
+</script>
+</body>
+</html>
