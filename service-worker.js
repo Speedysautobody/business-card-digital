@@ -1,4 +1,4 @@
-const CACHE_NAME = "speedys-auto-body-v1";
+const CACHE_NAME = "speedys-auto-body-v2";
 
 const FILES_TO_CACHE = [
   "./",
@@ -6,11 +6,11 @@ const FILES_TO_CACHE = [
   "./manifest.json",
   "./Speedys.png",
   "./plantilla.png",
-  "./icon-192.png",
-  "./icon-512.png"
+  "./speedys-icon-192.png",
+  "./speedys-icon-512.png"
 ];
 
-// Instalar Service Worker
+// INSTALAR
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -21,7 +21,7 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// Activar y eliminar caches anteriores
+// ACTIVAR Y BORRAR CACHE ANTERIOR
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -36,17 +36,17 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Permitir funcionamiento offline
+// ACTUALIZAR ARCHIVOS Y PERMITIR USO OFFLINE
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        const responseCopy = response.clone();
+        const copy = response.clone();
 
         caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseCopy);
+          cache.put(event.request, copy);
         });
 
         return response;
