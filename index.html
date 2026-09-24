@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#07101b">
+  <title>Speedy's Auto Body | Erick</title>
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Speedy's">
+
+  <style>
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;font-family:Arial,Helvetica,sans-serif;color:#fff;min-height:100vh;
+      background:#07101b url("./plantilla.png") center top/cover fixed no-repeat;
+    }
+    body:before{
+      content:"";position:fixed;inset:0;pointer-events:none;
+      background:linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.45));
+    }
+    .card{
+      width:min(100%,470px);min-height:100vh;margin:auto;position:relative;overflow:hidden;
+      background:linear-gradient(180deg,rgba(1,10,22,.05),rgba(1,10,22,.72)),
+                 url("./plantilla.png") center top/cover no-repeat;
+      box-shadow:0 0 60px rgba(0,0,0,.55);
+    }
+    .card>*{position:relative;z-index:1}
+    .topbar{display:flex;justify-content:flex-end;padding:16px 16px 0}
+    .lang{display:flex;border:1px solid #22dfff;border-radius:25px;overflow:hidden;background:rgba(0,10,25,.78)}
+    .lang button{border:0;background:transparent;color:#c7efff;padding:9px 15px;font-weight:900;cursor:pointer}
+    .lang button.active{background:linear-gradient(135deg,#35f2ff,#168cff);color:#06111d}
+    .hero{text-align:center;padding:5px 14px 8px}
+    .logo{width:94%;max-height:300px;object-fit:contain;filter:drop-shadow(0 8px 15px #000)}
+    .owner{margin:0 16px 15px;padding:11px;text-align:center;border:1px solid rgba(34,223,255,.55);
+      border-radius:18px;background:rgba(2,20,43,.78);backdrop-filter:blur(7px)}
+    .owner h1{margin:0;font-size:34px;text-transform:uppercase}
+    .owner p{margin:3px 0 0;color:#bdefff;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:12px}
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:0 16px 15px}
+    .btn{
+      min-height:70px;border-radius:18px;border:1px solid #25dfff;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:7px;text-decoration:none;color:#fff;font-weight:900;
+      font-size:13px;text-transform:uppercase;letter-spacing:.4px;background:rgba(3,19,42,.9);
+      box-shadow:0 6px 17px rgba(0,0,0,.35);cursor:pointer
+    }
+    .btn .ico{font-size:23px}
+    .install-wrap{padding:0 16px 15px}
+    .install-app{
+      width:100%;min-height:60px;border-radius:20px;border:1px solid #54f4ff;color:#fff;font-weight:900;
+      font-size:14px;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;
+      background:linear-gradient(135deg,#008ee8,#5e31ff,#e92262);
+      box-shadow:0 0 20px rgba(0,210,255,.32)
+    }
+    .install-app[hidden]{display:none}
+    .ios-help{display:none;margin:0 16px 15px;padding:12px;border-radius:16px;text-align:center;
+      background:rgba(3,22,45,.92);border:1px solid #2ee9ff;font-size:12px;line-height:1.45}
+    .info{margin:0 16px 14px;border:1px solid rgba(0,229,255,.38);border-radius:20px;overflow:hidden;
+      background:rgba(3,22,45,.82);backdrop-filter:blur(8px)}
+    .info>div{display:grid;grid-template-columns:38px 1fr;grid-template-rows:auto auto;padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.1)}
+    .info>div:last-child{border-bottom:0}
+    .sym{grid-row:1/3;display:grid;place-items:center;font-size:20px;color:#2ee9ff}
+    .info b{font-size:12px}.info span{font-size:10px;color:#a9c7dc;text-transform:uppercase;letter-spacing:1px}
+    .address{text-align:center;padding:4px 20px 15px;font-size:13px}
+    .address a,.site a{color:#fff;text-decoration:none}
+    .socials{display:flex;justify-content:center;gap:17px;padding:4px 16px 18px}
+    .social{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#fff;text-decoration:none;
+      font-weight:900;font-size:20px;background:rgba(4,22,45,.92);border:2px solid #2ee9ff}
+    .site{margin:0 16px 22px;padding:14px;border:1px solid #24dfff;border-radius:18px;text-align:center;
+      background:rgba(3,34,67,.9)}
+    .footer{text-align:center;color:#9fc6db;font-size:10px;padding:0 0 22px;letter-spacing:.8px}
+  </style>
+</head>
+
+<body>
+<main class="card">
+  <div class="topbar">
+    <div class="lang">
+      <button id="en" class="active" type="button" onclick="setLang('en')">EN</button>
+      <button id="es" type="button" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
+
+  <section class="hero">
+    <img class="logo" src="./Speedys.png" alt="Speedy's Auto Body Collision Repair LLC">
+  </section>
+
+  <section class="owner">
+    <h1>Erick</h1>
+    <p data-en="Owner" data-es="Propietario">Owner</p>
+  </section>
+
+  <section class="actions">
+    <a class="btn" href="tel:+18166959457"><span class="ico">☎</span><span data-en="Call Now" data-es="Llamar">Call Now</span></a>
+    <a class="btn" href="sms:+18166959457"><span class="ico">💬</span><span data-en="Text" data-es="Mensaje">Text</span></a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=215%20N%20Scott%20Ave%20Suite%20A%2C%20Belton%2C%20MO%2064012"><span class="ico">📍</span><span data-en="Directions" data-es="Cómo llegar">Directions</span></a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.speedyautobody.com/"><span class="ico">🌐</span><span data-en="Website" data-es="Sitio web">Website</span></a>
+    <button class="btn" type="button" onclick="saveContact()"><span class="ico">👤</span><span data-en="Save Contact" data-es="Guardar contacto">Save Contact</span></button>
+    <button class="btn" type="button" onclick="shareCard()"><span class="ico">↗</span><span data-en="Share" data-es="Compartir">Share</span></button>
+  </section>
+
+  <div class="install-wrap">
+    <button id="installApp" class="install-app" type="button" hidden
+      data-en="Save Business Card" data-es="Guardar Tarjeta de Negocio">Save Business Card</button>
+  </div>
+
+  <div id="iosHelp" class="ios-help"
+    data-en="On iPhone: tap Share, then Add to Home Screen."
+    data-es="En iPhone: toca Compartir y luego Agregar a pantalla de inicio.">
+    On iPhone: tap Share, then Add to Home Screen.
+  </div>
+
+  <section class="info">
+    <div><div class="sym">☎</div><b>816-695-9457</b><span data-en="Phone Number" data-es="Teléfono">Phone Number</span></div>
+    <div><div class="sym">▣</div><b data-en="Monday – Friday" data-es="Lunes – Viernes">Monday – Friday</b><span data-en="Work Days" data-es="Días de trabajo">Work Days</span></div>
+    <div><div class="sym">◷</div><b>9:00 AM – 5:00 PM</b><span data-en="Work Hours" data-es="Horario">Work Hours</span></div>
+  </section>
+
+  <div class="address">
+    <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=215%20N%20Scott%20Ave%20Suite%20A%2C%20Belton%2C%20MO%2064012">
+      📍 215 N Scott Ave Suite A, Belton, MO 64012
+    </a>
+  </div>
+
+  <section class="socials">
+    <a class="social" target="_blank" rel="noopener" href="https://www.pinterest.com/speedyautobody/" aria-label="Pinterest">P</a>
+    <a class="social" target="_blank" rel="noopener" href="https://www.tiktok.com/@speedys.auto.body" aria-label="TikTok">♪</a>
+    <a class="social" target="_blank" rel="noopener" href="https://www.facebook.com/SpeedysAutoBodyCollisionRepair/" aria-label="Facebook">f</a>
+    <a class="social" target="_blank" rel="noopener" href="https://www.instagram.com/speedys_autobody/" aria-label="Instagram">◎</a>
+  </section>
+
+  <div class="site">🌐 <a target="_blank" rel="noopener" href="https://www.speedyautobody.com/">www.speedyautobody.com</a></div>
+  <div class="footer">SPEEDY'S AUTO BODY COLLISION REPAIR LLC</div>
+</main>
+
+<script>
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-en]").forEach(function(el) {
+    el.textContent = el.getAttribute("data-" + lang);
+  });
+  document.getElementById("en").classList.toggle("active", lang === "en");
+  document.getElementById("es").classList.toggle("active", lang === "es");
+}
+
+function saveContact() {
+  var vcard =
+    "BEGIN:VCARD\r\n" +
+    "VERSION:3.0\r\n" +
+    "FN:Erick\r\n" +
+    "ORG:Speedy's Auto Body Collision Repair LLC\r\n" +
+    "TITLE:Owner\r\n" +
+    "TEL;TYPE=CELL:+18166959457\r\n" +
+    "ADR;TYPE=WORK:;;215 N Scott Ave Suite A;Belton;MO;64012;USA\r\n" +
+    "URL:https://www.speedyautobody.com/\r\n" +
+    "END:VCARD\r\n";
+
+  var blob = new Blob([vcard], {type:"text/vcard;charset=utf-8"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "Erick-Speedys-Auto-Body.vcf";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+}
+
+async function shareCard() {
+  var data = {
+    title: "Speedy's Auto Body",
+    text: "Speedy's Auto Body Collision Repair LLC",
+    url: window.location.href
+  };
+  if (navigator.share) {
+    try { await navigator.share(data); } catch(e) {}
+  } else {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      alert("Link copied!");
+    } catch(e) {}
+  }
+}
+
+var deferredInstallPrompt = null;
+var installButton = document.getElementById("installApp");
+var iosHelp = document.getElementById("iosHelp");
+var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+var isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+    navigator.serviceWorker.register("./service-worker.js").catch(function(err) {
+      console.log("Service worker:", err);
+    });
+  });
+}
+
+window.addEventListener("beforeinstallprompt", function(e) {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  if (!isStandalone) installButton.hidden = false;
+});
+
+installButton.addEventListener("click", async function() {
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    installButton.hidden = true;
+  } else if (isIOS && !isStandalone) {
+    iosHelp.style.display = iosHelp.style.display === "block" ? "none" : "block";
+  }
+});
+
+if (isIOS && !isStandalone) installButton.hidden = false;
+
+window.addEventListener("appinstalled", function() {
+  installButton.hidden = true;
+  iosHelp.style.display = "none";
+});
+</script>
+</body>
+</html>
