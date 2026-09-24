@@ -1,0 +1,25 @@
+{
+  "name": "Speedy's AutoBody",
+  "short_name": "Speedy's AutoBody",
+  "description": "Speedy's Auto Body digital business card",
+  "id": "./?pwa=3",
+  "start_url": "./?pwa=3",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07101b",
+  "theme_color": "#07101b",
+  "icons": [
+    {
+      "src": "./speedys-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./speedys-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
