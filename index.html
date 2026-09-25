@@ -48,6 +48,12 @@
       box-shadow:0 6px 17px rgba(0,0,0,.35);cursor:pointer
     }
     .btn .ico{font-size:23px}
+    .btn-estimate{
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #008ee8, #168cff);
+      border-color: #54f4ff;
+      min-height: 65px;
+    }
     .install-wrap{padding:0 16px 15px}
     .install-app{
       width:100%;min-height:60px;border-radius:20px;border:1px solid #54f4ff;color:#fff;font-weight:900;
@@ -66,12 +72,10 @@
     .sym{grid-row:1/3;display:grid;place-items:center;font-size:20px;color:#2ee9ff}
     .info b{font-size:12px}.info span{font-size:10px;color:#a9c7dc;text-transform:uppercase;letter-spacing:1px}
     .address{text-align:center;padding:4px 20px 15px;font-size:13px}
-    .address a,.site a{color:#fff;text-decoration:none}
+    .address a{color:#fff;text-decoration:none}
     .socials{display:flex;justify-content:center;gap:17px;padding:4px 16px 18px}
     .social{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#fff;text-decoration:none;
       font-weight:900;font-size:20px;background:rgba(4,22,45,.92);border:2px solid #2ee9ff}
-    .site{margin:0 16px 22px;padding:14px;border:1px solid #24dfff;border-radius:18px;text-align:center;
-      background:rgba(3,34,67,.9)}
     .footer{text-align:center;color:#9fc6db;font-size:10px;padding:0 0 22px;letter-spacing:.8px}
   </style>
 </head>
@@ -95,6 +99,12 @@
   </section>
 
   <section class="actions">
+    <!-- Botón de Cotización / Estimación destacado -->
+    <a class="btn btn-estimate" target="_blank" rel="noopener" href="https://wa.me/18166959457?text=Hello,%20I%20would%20like%20to%20request%20an%20estimate.">
+      <span class="ico">📝</span>
+      <span data-en="Get an Estimate" data-es="Cotizar / Estimado">Get an Estimate</span>
+    </a>
+
     <a class="btn" href="tel:+18166959457"><span class="ico">☎</span><span data-en="Call Now" data-es="Llamar">Call Now</span></a>
     <a class="btn" href="sms:+18166959457"><span class="ico">💬</span><span data-en="Text" data-es="Mensaje">Text</span></a>
     <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=215%20N%20Scott%20Ave%20Suite%20A%2C%20Belton%2C%20MO%2064012"><span class="ico">📍</span><span data-en="Directions" data-es="Cómo llegar">Directions</span></a>
@@ -133,7 +143,6 @@
     <a class="social" target="_blank" rel="noopener" href="https://www.instagram.com/speedys_autobody/" aria-label="Instagram">◎</a>
   </section>
 
-  <div class="site">🌐 <a target="_blank" rel="noopener" href="https://www.speedyautobody.com/">www.speedyautobody.com</a></div>
   <div class="footer">SPEEDY'S AUTO BODY COLLISION REPAIR LLC</div>
 </main>
 
@@ -151,10 +160,11 @@ function saveContact() {
   var vcard =
     "BEGIN:VCARD\r\n" +
     "VERSION:3.0\r\n" +
-    "FN:Erick\r\n" +
+    "FN:Erick - Speedy's Auto Body\r\n" +
+    "N:Erick;Speedy's Auto Body;;;\r\n" +
     "ORG:Speedy's Auto Body Collision Repair LLC\r\n" +
     "TITLE:Owner\r\n" +
-    "TEL;TYPE=CELL:+18166959457\r\n" +
+    "TEL;TYPE=CELL,VOICE:+18166959457\r\n" +
     "ADR;TYPE=WORK:;;215 N Scott Ave Suite A;Belton;MO;64012;USA\r\n" +
     "URL:https://www.speedyautobody.com/\r\n" +
     "END:VCARD\r\n";
