@@ -77,6 +77,25 @@
     .social{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#fff;text-decoration:none;
       font-weight:900;font-size:20px;background:rgba(4,22,45,.92);border:2px solid #2ee9ff}
     .footer{text-align:center;color:#9fc6db;font-size:10px;padding:0 0 22px;letter-spacing:.8px}
+
+    /* ESTILOS DEL ANUNCIO / MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.82);
+      display: none; align-items: center; justify-content: center;
+      z-index: 1000; padding: 20px; backdrop-filter: blur(5px);
+    }
+    .modal-box {
+      background: #03132a; border: 1px solid #25dfff; border-radius: 20px;
+      padding: 22px 18px; max-width: 400px; width: 100%; text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+    .modal-box h3 { margin: 0 0 10px; color: #22dfff; font-size: 18px; text-transform: uppercase; }
+    .modal-box p { font-size: 14px; line-height: 1.5; color: #d0efff; margin: 0 0 20px; }
+    .modal-btn {
+      width: 100%; padding: 14px; border-radius: 12px; border: none;
+      background: linear-gradient(135deg,#35f2ff,#168cff); color: #06111d;
+      font-weight: 900; font-size: 15px; cursor: pointer; text-transform: uppercase;
+    }
   </style>
 </head>
 
@@ -99,11 +118,11 @@
   </section>
 
   <section class="actions">
-    <!-- Botón de Cotización / Estimación destacado -->
-    <a class="btn btn-estimate" target="_blank" rel="noopener" href="https://wa.me/18166959457?text=Hello,%20I%20would%20like%20to%20request%20an%20estimate.">
+    <!-- Botón de Cotización con Modal -->
+    <button class="btn btn-estimate" type="button" onclick="openEstimate()">
       <span class="ico">📝</span>
       <span data-en="Get an Estimate" data-es="Cotizar / Estimado">Get an Estimate</span>
-    </a>
+    </button>
 
     <a class="btn" href="tel:+18166959457"><span class="ico">☎</span><span data-en="Call Now" data-es="Llamar">Call Now</span></a>
     <a class="btn" href="sms:+18166959457"><span class="ico">💬</span><span data-en="Text" data-es="Mensaje">Text</span></a>
@@ -146,6 +165,18 @@
   <div class="footer">SPEEDY'S AUTO BODY COLLISION REPAIR LLC</div>
 </main>
 
+<!-- VENTANA EMERGENTE (MODAL ADVERTENCIA) -->
+<div id="estimateModal" class="modal-overlay">
+  <div class="modal-box">
+    <h3 data-en="Important Notice" data-es="Aviso Importante">Important Notice</h3>
+    <p data-en="Online estimates are subject to change. A final and precise estimate requires inspecting and disassembling the vehicle in person."
+       data-es="La cotización en línea está sujeta a cambios. Se entiende que se necesita evaluar el vehículo y desarmar para un estimado más preciso.">
+       Online estimates are subject to change. A final and precise estimate requires inspecting and disassembling the vehicle in person.
+    </p>
+    <button class="modal-btn" onclick="acceptEstimate()" data-en="Accept & Continue" data-es="Aceptar y Continuar">Accept & Continue</button>
+  </div>
+</div>
+
 <script>
 function setLang(lang) {
   document.documentElement.lang = lang;
@@ -154,6 +185,15 @@ function setLang(lang) {
   });
   document.getElementById("en").classList.toggle("active", lang === "en");
   document.getElementById("es").classList.toggle("active", lang === "es");
+}
+
+function openEstimate() {
+  document.getElementById("estimateModal").style.display = "flex";
+}
+
+function acceptEstimate() {
+  document.getElementById("estimateModal").style.display = "none";
+  window.open("https://wa.me/18166959457?text=Hello,%20I%20would%20like%20to%20request%20an%20estimate.", "_blank");
 }
 
 function saveContact() {
