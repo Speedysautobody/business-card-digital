@@ -118,10 +118,9 @@
   </section>
 
   <section class="actions">
-    <!-- Botón de Cotización con Modal -->
     <button class="btn btn-estimate" type="button" onclick="openEstimate()">
       <span class="ico">📝</span>
-      <span data-en="Get an Estimate" data-es="Cotizar / Estimado">Get an Estimate</span>
+      <span data-en="Get an Approximate Estimate" data-es="Obtén un estimado aproximado">Get an Approximate Estimate</span>
     </button>
 
     <a class="btn" href="tel:+18166959457"><span class="ico">☎</span><span data-en="Call Now" data-es="Llamar">Call Now</span></a>
@@ -166,7 +165,7 @@
 </main>
 
 <!-- VENTANA EMERGENTE (MODAL ADVERTENCIA) -->
-<div id="estimateModal" class="modal-overlay">
+<div id="estimateModal" class="modal-overlay" role="dialog" aria-modal="true" onclick="closeModalOnOverlay(event)">
   <div class="modal-box">
     <h3 data-en="Important Notice" data-es="Aviso Importante">Important Notice</h3>
     <p data-en="Online estimates are subject to change. A final and precise estimate requires inspecting and disassembling the vehicle in person."
@@ -191,18 +190,34 @@ function openEstimate() {
   document.getElementById("estimateModal").style.display = "flex";
 }
 
+function closeModalOnOverlay(e) {
+  if (e.target.id === "estimateModal") {
+    document.getElementById("estimateModal").style.display = "none";
+  }
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    document.getElementById("estimateModal").style.display = "none";
+  }
+});
+
 function acceptEstimate() {
   document.getElementById("estimateModal").style.display = "none";
-  window.open("https://wa.me/18166959457?text=Hello,%20I%20would%20like%20to%20request%20an%20estimate.", "_blank");
+  var lang = document.documentElement.lang || "en";
+  var msg = lang === "es" 
+    ? "Hola,%20me%20gustaría%20solicitar%20un%20estimado." 
+    : "Hello,%20I%20would%20like%20to%20request%20an%20estimate.";
+  window.open("https://wa.me/18166959457?text=" + msg, "_blank");
 }
 
 function saveContact() {
   var vcard =
     "BEGIN:VCARD\r\n" +
     "VERSION:3.0\r\n" +
-    "FN:Erick - Speedy's Auto Body\r\n" +
-    "N:Erick;Speedy's Auto Body;;;\r\n" +
-    "ORG:Speedy's Auto Body Collision Repair LLC\r\n" +
+    "FN;CHARSET=UTF-8:Erick - Speedy's Auto Body\r\n" +
+    "N;CHARSET=UTF-8:Erick;Speedy's Auto Body;;;\r\n" +
+    "ORG;CHARSET=UTF-8:Speedy's Auto Body Collision Repair LLC\r\n" +
     "TITLE:Owner\r\n" +
     "TEL;TYPE=CELL,VOICE:+18166959457\r\n" +
     "ADR;TYPE=WORK:;;215 N Scott Ave Suite A;Belton;MO;64012;USA\r\n" +
@@ -231,8 +246,11 @@ async function shareCard() {
   } else {
     try {
       await navigator.clipboard.writeText(window.location.href);
-      alert("Link copied!");
-    } catch(e) {}
+      var lang = document.documentElement.lang || "en";
+      alert(lang === "es" ? "¡Enlace copiado!" : "Link copied!");
+    } catch(e) {
+      prompt("Copy link:", window.location.href);
+    }
   }
 }
 
